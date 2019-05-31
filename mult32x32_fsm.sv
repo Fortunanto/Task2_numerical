@@ -25,106 +25,115 @@ module mult32x32_fsm (
     localparam state_h=4'd7;
     localparam state_i=4'd8;
     
+    logic [3:0] next_state; 
     logic [3:0] cur_state; 
-    
+
     always_ff @(posedge clk, posedge rst) begin
         if(rst == 1) begin
-            cur_state=state_a;
+            cur_state<=state_a;
         end
+        else begin
+            cur_state<=next_state;
+            
+        end
+    end
+    always_comb begin
         case(cur_state)
             state_a: begin
                 if(start == 1'b0) begin
-                    valid<=1;
-                    upd_prod<=0;
+                    valid=1;
+                    upd_prod=0;
                 end
                 else begin
-                    cur_state<=state_b;
-                    a_sel<=0;
-                    b_sel<=0;
-                    shift_a_val<=16;
-                    shift_b_val<=0;
-                    upd_prod<=1;
-                    clr_prod<=0;
-                    valid<=0;
+                    next_state=state_b;
+                    a_sel=0;
+                    b_sel=0;
+                    shift_a_val=16;
+                    shift_b_val=0;
+                    upd_prod=1;
+                    clr_prod=1;
+                    valid=0;
                 end
             end
             state_b: begin
-                cur_state<=state_c;
-                a_sel<=0;
-                b_sel<=1;
-                shift_a_val<=24;
-                shift_b_val<=8;
-                upd_prod<=1;
-                clr_prod<=0;
-                valid<=0;
+                next_state=state_c;
+                a_sel=0;
+                b_sel=1;
+                shift_a_val=24;
+                shift_b_val=8;
+                upd_prod=1;
+                clr_prod=0;
+                valid=0;
             end
             state_c: begin
-                cur_state<=state_d;
-                a_sel<=1;
-                b_sel<=0;
-                shift_a_val<=24;
-                shift_b_val<=8;
-                upd_prod<=1;
-                clr_prod<=0;
-                valid<=0;
+                next_state=state_d;
+                a_sel=1;
+                b_sel=0;
+                shift_a_val=24;
+                shift_b_val=8;
+                upd_prod=1;
+                clr_prod=0;
+                valid=0;
             end
             state_d: begin
-                cur_state<=state_e;
-                a_sel<=1;
-                b_sel<=1;
-                shift_a_val<=32;
-                shift_b_val<=16;
-                upd_prod<=1;
-                clr_prod<=0;
-                valid<=0;
+                next_state=state_e;
+                a_sel=1;
+                b_sel=1;
+                shift_a_val=32;
+                shift_b_val=16;
+                upd_prod=1;
+                clr_prod=0;
+                valid=0;
             end
             state_e: begin
-                cur_state<=state_f;
-                a_sel<=2;
-                b_sel<=0;
-                shift_a_val<=32;
-                shift_b_val<=16;
-                upd_prod<=1;
-                clr_prod<=0;
-                valid<=0;
+                next_state=state_f;
+                a_sel=2;
+                b_sel=0;
+                shift_a_val=32;
+                shift_b_val=16;
+                upd_prod=1;
+                clr_prod=0;
+                valid=0;
             end
             state_f: begin
-                cur_state<=state_g;
-                a_sel<=2;
-                b_sel<=1;
-                shift_a_val<=40;
-                shift_b_val<=24;
-                upd_prod<=1;
-                clr_prod<=0;
-                valid<=0;
+                next_state=state_g;
+                a_sel=2;
+                b_sel=1;
+                shift_a_val=40;
+                shift_b_val=24;
+                upd_prod=1;
+                clr_prod=0;
+                valid=0;
             end    
             state_g: begin
-                cur_state<=state_h;
-                a_sel<=3;
-                b_sel<=0;
-                shift_a_val<=40;
-                shift_b_val<=24;
-                upd_prod<=1;
-                clr_prod<=0;
-                valid<=0;
+                next_state=state_h;
+                a_sel=3;
+                b_sel=0;
+                shift_a_val=40;
+                shift_b_val=24;
+                upd_prod=1;
+                clr_prod=0;
+                valid=0;
             end
             state_h: begin
-                cur_state<=state_i;
-                a_sel<=3;
-                b_sel<=1;
-                shift_a_val<=48;
-                shift_b_val<=32;
-                upd_prod<=1;
-                clr_prod<=0;
-                valid<=0;
+                next_state=state_i;
+                a_sel=3;
+                b_sel=1;
+                shift_a_val=48;
+                shift_b_val=32;
+                upd_prod=1;
+                clr_prod=0;
+                valid=0;
             end
             state_i: begin
-                cur_state<=state_a;
-                upd_prod<=1;
-                valid<=0;
+                next_state=state_a;
+                upd_prod=1;
+                valid=0;    
             end
-        endcase                
+        endcase
+        $display("state %d",cur_state);
     end
+    
     // End of your code
     
 endmodule
