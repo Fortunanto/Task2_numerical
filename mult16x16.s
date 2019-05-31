@@ -21,7 +21,21 @@ main:   # Load data from memory
         ori		t0, t0, 0xff
         
 ####################
-# Start of your code
+# Start of your code     
+
+        andi s2, t3 ,0x0ff # a- 8 lsb
+        srli s3, t3 ,8 # a- 8 msb
+
+        mul s4, s2, t4
+        and s4, s4, t0
+
+        mul s5, s3, t4
+        and s5, s5, t0
+
+        slli s5, s5, 8
+
+        add t6, s5, s4
+
 
 # Use the code below for 8X8 multiplication
 #   mul		<PROD>, <FACTOR1>, <FACTOR2>
