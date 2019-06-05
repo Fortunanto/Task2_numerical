@@ -53,7 +53,7 @@ module mult32x32_fast_fsm (
                     shift_a_val=16;
                     shift_b_val=0;
                     upd_prod=1;
-                    clr_prod=0;
+                    clr_prod=1;
                     valid=0;
                 end
             end
@@ -110,7 +110,7 @@ module mult32x32_fast_fsm (
             state_g: begin
                 if (a_msb_is_0==1'b1) begin
                     next_state=state_a;
-                    upd_prod=1
+                    upd_prod=1;
                     valid=0;
                 end
                 else begin

@@ -66,11 +66,14 @@ module mult32x32_arith (
         if(rst==1) begin
             prod_res<=0;
         end
-        if(clr_prod==1) begin
-            prod_res<=0;
-        end
+        
         if(upd_prod==1) begin
-            prod_res<=prod_res+temp_res;
+            if(clr_prod==1) begin         
+                prod_res<=temp_res;
+            end
+            else begin
+                prod_res<=prod_res+temp_res;
+            end
             product<=prod_res;
         end
         
