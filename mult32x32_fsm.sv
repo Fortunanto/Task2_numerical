@@ -43,6 +43,7 @@ module mult32x32_fsm (
                 if(start == 1'b0) begin
                     valid=1;
                     upd_prod=0;
+                    next_state=state_a;
                 end
                 else begin
                     next_state=state_b;

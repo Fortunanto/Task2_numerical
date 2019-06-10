@@ -21,12 +21,18 @@ module mult32x32_test;
     .reset(reset));
     initial begin        
         clk=0;
+
         reset=1;
         #5;
         reset=0;
-        a=32'd316089952;
-        b=32'd206038796;        
+         a=32'd316089952;
+        b=32'd206038796;  
+        repeat(3) begin
+            @(posedge clk);
+        end
         start=1;
+        @(posedge clk);
+        start=0;
         repeat(10) begin
             @(posedge clk);
         end
