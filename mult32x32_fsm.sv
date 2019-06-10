@@ -27,9 +27,9 @@ module mult32x32_fsm (
     
     logic [3:0] next_state; 
     logic [3:0] cur_state; 
-
+    
     always_ff @(posedge clk, posedge rst) begin
-        if(rst == 1) begin
+        if(rst == 1) begin            
             cur_state<=state_a;
         end
         else begin
@@ -132,7 +132,7 @@ module mult32x32_fsm (
                 valid=0;    
             end
         endcase
-        $display("state %d",cur_state);
+        $display("state %d,next state %d",cur_state,next_state);
     end
     
     // End of your code
