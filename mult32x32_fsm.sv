@@ -132,7 +132,7 @@ module mult32x32_fsm (
                 valid=0;    
             end
         endcase
-        $display("state %d,next state %d",cur_state,next_state);
+        //$display("state %d,next state %d",cur_state,next_state);
     end
     
     // End of your code

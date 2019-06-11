@@ -24,10 +24,16 @@ module mult32x32_fast_test;
     initial begin  
         clk=0;
         reset=1;
+        start=0;
         #5;
         reset=0;
         a=32'd316089952;
-        b=32'd206038796;        
+        b=32'd206038796;     
+        
+        repeat(3) begin
+            @(posedge clk);
+        end
+
         start=1;
 
         @(posedge clk);        
@@ -38,10 +44,13 @@ module mult32x32_fast_test;
         end
         
         a=32'hD72660;
-        start=1;
-
-        @(posedge clk);
         
+      repeat(3) begin
+            @(posedge clk);
+        end   
+        start=1;
+                 @(posedge clk);
+
         start=0;
     end
     always begin

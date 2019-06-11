@@ -40,7 +40,7 @@ module mult32x32_test;
         if(product==a*b) begin
             $display("SUCCESS: %d = %d * %d", product,a,b);
         end
-        $display("test");
+        
         
     end
     always begin
